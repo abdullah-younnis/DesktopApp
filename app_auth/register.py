@@ -1,22 +1,20 @@
 # Tasks:
 
-    # adding to it password verification not less than 8 char
+    # adding to it password verification not less than 8 char and contain numbers and @#$% special char
     
-    # adding to it execption handling for value errors
+    # adding to it execption handling 
 
-    # adding to it error statments
-
-
+    # adding to it error descriptive statments
 
 import json
 import re
 
-# Define a function named register that takes username and password as input 
+# define a function takes username, password and account_type as input 
 def register():
-    user_name = input() 
-    password = input("Enter password: ") 
+    user_name = input("Enter Your User Name: ") 
+    password = input("Enter Your Password: ") 
     account_type = ""
-    # Choosing the account type mangerial or empolyee and save it
+    # choosing the account type mangerial or empolyee and save it
     while account_type not in ("manager", "employee"):
         account_type = input("Enter account type (manager/employee): ") 
 
