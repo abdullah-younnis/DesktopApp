@@ -18,7 +18,7 @@ def register():
     while account_type not in ("manager", "employee"):
         account_type = input("Enter account type (manager/employee): ") 
 
-    # read existing data from json file if it exists
+    # read existing data from json file
     try:
         with open("credentials_file.json", mode="r") as f:
             data = json.load(f)
