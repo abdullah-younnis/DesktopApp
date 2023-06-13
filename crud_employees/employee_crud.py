@@ -6,24 +6,21 @@ def create_employee():
     employee_fname = input("Enter employee first name: ")
     employee_lname = input("Enter employee last name: ")
     employee_salary = 0
-
     # read existing data from json file
     try:
         with open("gui\employee_accounts.json", mode="r") as f:
             data = json.load(f)
     except FileNotFoundError:
         data = {}
-
     # add new employee data to the json file
     data[employee_fname] = employee_lname, employee_salary
-
     # write updated data to json file
     with open("gui\employee_accounts.json", mode="w") as f:
         json.dump(data, f)
         print("Employee added successfully")
 
 
-# to view employees first name in the file 
+# to view all employees first name in the file
 def read_employee():
     # read existing data from json file
     try:
@@ -44,38 +41,60 @@ def update_employee():
         target_update = input("Enter target to update (first name/last name): ")
     # read exciting json file
     try:
-        with open("gui\employee_accounts.json", mode="r") as f:
+        with open("gui/employee_accounts.json", mode="r") as f:
             data = json.load(f)
     except FileNotFoundError as error:
         print(f"File Not Found{error}")
     # take employee first and last name
     employee_fname = input("Enter employee first name: ")
     employee_lname = input("Enter employee last name: ")
-
     # check if employee in the json file
     if employee_fname in data:
-        if employee_lname in data[employee_fname][0]:
+        if data[employee_fname][0] == employee_lname:
             print("User found in the list")
             # match the target variable
-            if target_update == "First_name":
+            if target_update.lower() == "first name":
                 employee_fname_update = input("Enter updated employee first name: ")
-                employee_fname = employee_fname_update
+                data[employee_fname_update] = data.pop(employee_fname)
                 print("Employee FirstName Updated")
-            else:
+
+            elif target_update.lower() == "last name":
                 employee_lname_update = input("Enter updated employee last name: ")
-                employee_lname = employee_lname_update
+                data[employee_fname][0] = employee_lname_update
                 print("Employee LastName Updated")
-        # notify miss-match employee last name
         else:
-            print("Employee last name didn't match check it again")
-    # notify wrong employee first name 
+            print("Employee last name didn't match")
+    # notify: employee not in file
     else:
         print("Employee not found in the file")
-
-# update_employee function Task:
-#                               Append the new employee updated variable to the json file
+        
+    # write updated data to the file
+    with open("gui/employee_accounts.json", mode="w") as f:
+        json.dump(data, f)
 
 
 # to delete employee
 def delete_employee():
-    pass
+    # read exciting json file
+    try:
+        with open("gui/employee_accounts.json", mode="r") as f:
+            data = json.load(f)
+    except FileNotFoundError as error:
+        print(f"File Not Found{error}")
+
+    employee_fnmae = input("Enter the employee first name: ")
+    employee_lnmae = input("Enter the employee last name: ")
+    
+    if employee_fnmae in data:
+        if employee_lnmae in data[employee_fnmae][0]:
+            # print(f"Employee data: {target}")
+            del data[employee_fnmae]
+            print("Employee information has been deleted")
+            with open("gui/employee_accounts.json", mode="w") as f:
+                json.dump(data, f)
+        else:
+            print("Employee last name didn't match check it again")
+    # notify: employee not in file
+    else:
+        print("Employee not found in the file")        
+            
