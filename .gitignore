@@ -6,7 +6,7 @@ __pycache__/
 /credentials_file
 # C extensions
 *.so
-
+/gui/employee_accounts
 # Distribution / packaging
 .Python
 build/
