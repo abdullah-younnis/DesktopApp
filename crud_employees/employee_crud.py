@@ -1,5 +1,8 @@
 import json
 
+# Tasks:
+        # adding more robust error handling for other types of errors that could occur,
+        # such as invalid user input or file write errors.
 
 # function to add new employee
 def create_employee():
@@ -8,14 +11,14 @@ def create_employee():
     employee_salary = 0
     # read existing data from json file
     try:
-        with open("gui\employee_accounts.json", mode="r") as f:
+        with open("gui/employee_accounts.json", mode="r") as f:
             data = json.load(f)
     except FileNotFoundError:
         data = {}
     # add new employee data to the json file
     data[employee_fname] = employee_lname, employee_salary
     # write updated data to json file
-    with open("gui\employee_accounts.json", mode="w") as f:
+    with open("gui/employee_accounts.json", mode="w") as f:
         json.dump(data, f)
         print("Employee added successfully")
 
@@ -24,7 +27,7 @@ def create_employee():
 def read_employee():
     # read existing data from json file
     try:
-        with open("gui\employee_accounts.json", mode="r") as f:
+        with open("gui/employee_accounts.json", mode="r") as f:
             data = json.load(f)
             print("List of all employees first name: \n")
             for i in data:

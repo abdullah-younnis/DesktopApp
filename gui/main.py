@@ -1,9 +1,12 @@
 import tkinter 
-
+# from crud_employees.employee_crud import read_employee, create_employee, delete_employee, update_employee
+# from crud_salaries.salary_crud import * 
+from tkinter.constants import *
+# from app_auth.login import login
 
     # Example (Hello, World):
     
-from tkinter.constants import *
+
 tk = tkinter.Tk()
 frame = tkinter.Frame(tk, relief=RIDGE, borderwidth=2)
 frame.pack(fill=BOTH,expand=1)
